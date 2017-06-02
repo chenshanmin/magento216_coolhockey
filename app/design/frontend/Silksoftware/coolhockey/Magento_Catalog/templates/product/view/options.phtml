@@ -1,0 +1,48 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/* @var $block \Magento\Catalog\Block\Product\View\Options */
+?>
+
+<?php $_options = $block->decorateArray($block->getOptions()) ?>
+<?php $_productId = $block->getProduct()->getId() ?>
+<?php if (count($_options)):?>
+    <script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "priceOptions": {
+                "optionConfig": <?php /* @escapeNotVerified */ echo $block->getJsonConfig()?>,
+                "controlContainer": ".field",
+                "priceHolderSelector": "[data-product-id='<?php echo $block->escapeHtml($_productId)?>'][data-role=priceBox]"
+            }
+        }
+    }
+</script>
+    <?php foreach ($_options as $_option): ?>
+        <?php echo $block->getOptionHtml($_option) ?>
+    <?php endforeach; ?>
+<?php endif; ?>
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$scopeConfig = $objectManager->create('Magento\Framework\App\Config\ScopeConfigInterface');
+$star_attr_id=$scopeConfig->getValue('product_attr_section/general/product_star_attr_list');
+$star_attr_id_arr = explode(',',$star_attr_id);
+$product_attr_set_id = (string)$block->getProduct()->getData('attribute_set_id');
+
+if (in_array($product_attr_set_id, $star_attr_id_arr)):?>
+    <script>
+        require(['jquery'], function ($) {
+            var list = $('.product-custom-option');
+            $.each(list,function (i,n) {
+                console.debug(i);
+                $(n).val($(n).attr('default-data'));
+//                $(n).closest('.field').hide();
+            })
+        })
+    </script>
+<?php endif ?>

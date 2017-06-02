@@ -1,0 +1,33 @@
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<!-- ko if: (visible)-->
+<div class="field addresses">
+    <div class="control">
+        <div style="display: none" class="shipping-address-items my_theme">
+            <!-- ko foreach: { data: elems, as: 'element' } -->
+            <!-- ko template: element.getTemplate() --><!-- /ko -->
+            <!-- /ko -->
+        </div>
+    </div>
+</div>
+<!-- /ko -->
+
+<!-- ko if: (visible)-->
+<div class="field addresses">
+    <div class="control">
+        <div class="shipping-address-items">
+            <select style="width: auto;" name="" id="choseShippingAdd" onchange="(function(){var inInfo = document.getElementById('choseShippingAdd').value;document.getElementById(inInfo).click();})()">
+                <!-- ko foreach: { data: elems, as: 'element' } -->
+                <!-- ko template: element.getTemplate()+'dropdown' --><!-- /ko -->
+                <!-- /ko -->
+            </select>
+        </div>
+    </div>
+</div>
+<br/>
+<!-- /ko -->

@@ -1,0 +1,21 @@
+{
+    "name": "mark/module-test1",
+    "description": "",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "info@mage2gen.com",
+            "name": "Mage2Gen"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Mark\\Test1\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

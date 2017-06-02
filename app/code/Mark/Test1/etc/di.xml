@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<virtualType name="Mark\Test1\Model\ResourceModel\Blog\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">hockey_team</argument>
+			<argument name="resourceModel" xsi:type="string">SilkSoftware\Hockeyteam\Model\ResourceModel\Hockeyteam\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="mark_blog_grid_data_source" xsi:type="string">Mark\Test1\Model\ResourceModel\Blog\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+</config>
